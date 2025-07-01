@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic JS Output Methods</title>
+  </head>
+  <body>
+    <h1>JavaScript Output Methods - Simple Demo</h1>
+
+    <!-- This paragraph will be updated by JavaScript using innerHTML -->
+    <p id="dynamicParagraph">This paragraph will be updated by JavaScript.</p>
+
+    <!-- This div will also be updated by JavaScript using innerHTML -->
+    <div id="outputDiv">This is where JavaScript output will appear...</div>
+
+    <script>
+      // --- 1. console.log() Method ---
+      // console.log() is used for debugging. Messages appear in the browser's Developer Console (press F12).
+      // Users will NOT see this directly on the webpage.
+      console.log("--- Console Log Demo ---");
+      console.log("This message is visible in the browser's console.");
+      let consoleMessage = "Hello from the console!";
+      console.log("Variable content:", consoleMessage);
+      console.log("A number:", 123);
+      console.log("A boolean:", true);
+
+      // --- 2. alert() Method ---
+      // alert() creates a pop-up dialog box with a message and an "OK" button.
+      // It blocks the webpage interaction until the user clicks "OK".
+      // This alert will appear as soon as the page loads.
+      let alertText = "This is a simple alert message!";
+      alert(alertText);
+      console.log("Alert displayed: " + alertText); // Log to console after alert is dismissed
+
+      // --- 3. document.getElementById().innerHTML Method ---
+      // innerHTML is used to change the content (text or HTML) inside an HTML element.
+      // This is the most common way to display dynamic content directly on the webpage.
+
+      // Get the paragraph element by its ID and update its content
+      let paragraphContent =
+        "This text was inserted into the paragraph using innerHTML.";
+      document.getElementById("dynamicParagraph").innerHTML = paragraphContent;
+      console.log("Paragraph updated using innerHTML.");
+
+      // Get the div element by its ID and update its content
+      let divContent =
+        "And this text was inserted into the div using innerHTML.";
+      document.getElementById("outputDiv").innerHTML = divContent;
+      console.log("Div updated using innerHTML.");
+
+      // --- 4. document.write() Method ---
+      // CAUTION: document.write() is generally NOT used in modern web development.
+      // If called AFTER the page has fully loaded, it will OVERWRITE the entire existing HTML content.
+      // In this simple example, it will run immediately after the script loads, overwriting everything above it.
+      console.log("document.write() will now overwrite the entire page.");
+      document.write("<h2>This content came from document.write()!</h2>");
+      document.write("<p>The previous HTML content has been replaced.</p>");
+      document.write(
+        "<button onclick='location.reload()'>Reload Page</button>"
+      ); // Button to reload the page
+    </script>
+  </body>
+</html>
