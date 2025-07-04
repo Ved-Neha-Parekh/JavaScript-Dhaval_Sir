@@ -1,10 +1,10 @@
-// 10. Sum of even numbers between 50 and 100
+// 15. Sum of all numbers ending with digit 7 (1–100)
 
 let sum = 0,
-  i = 50;
+  i = 1;
 
 do {
-  if (i % 2 === 0) {
+  if (i % 10 === 7) {
     sum += i;
   }
   i++;
