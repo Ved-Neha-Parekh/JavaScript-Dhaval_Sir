@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #dcbddf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+}
+
+.chart-1,
+.chart-2 {
+    padding: 2rem;
+    border: 1px solid #f8932e;
+    border-radius: 1rem;
+    background: #351c35;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
