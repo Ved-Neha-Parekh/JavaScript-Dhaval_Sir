@@ -1,7 +1,8 @@
-function addTwoNumber(a, b) {
-  return a + b;
+function addNumbers(num1, num2) {
+  return num1 + num2;
 }
+console.log(addNumbers(5, 10));
 
-const a = 10,
-  b = 15;
-console.log(`Sum of ${a} and ${b} is ${addTwoNumber(a, b)}`);
+const addNumbersArrow = (num1, num2) => num1 + num2;
+
+console.log(addNumbersArrow(10, 10));

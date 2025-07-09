@@ -1,6 +1,8 @@
-console.log("--- Welcome to greeting function ---");
 function greet(name) {
-  console.log(`Hello ${name}! Welcome to JavaScript`);
+  return `Hello, ${name}! Welcome to JavaScript.`;
 }
 
-greet("Bob");
+console.log(greet("Alice"));
+
+const greetArrow = (name) => `Hello, ${name}! Welcome to JavaScript.`;
+console.log(greetArrow("Bob"));
