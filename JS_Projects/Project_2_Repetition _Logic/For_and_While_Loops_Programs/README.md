@@ -1,6 +1,6 @@
-# 🔄 JavaScript Loop Programs (for and while loops)
+# 🔄 JavaScript Loop Programs (for, while and do...while loops)
 
-This repository features a collection of 27 mini JavaScript programs, each demonstrating the use of `for and while` loops to solve various numerical problems, including calculating sums, identifying prime numbers, and manipulating digits. These console-based scripts are designed to provide clear examples of iterative control flow.
+This repository features a collection of 27 mini JavaScript programs, each demonstrating the use of `for, while and do...while` loops to solve various numerical problems, including calculating sums, identifying prime numbers, and manipulating digits. These console-based scripts are designed to provide clear examples of iterative control flow.
 
 ## 🔥 Features
 
