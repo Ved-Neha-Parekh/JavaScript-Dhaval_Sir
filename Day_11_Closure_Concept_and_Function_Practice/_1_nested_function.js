@@ -29,5 +29,6 @@ function name() {
 
   greet();
 }
-
 name();
+
+// Closure means function returning function using parent function variable and it can prevent parent function variable even after execution
