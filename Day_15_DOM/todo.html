@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO Table</title>
+</head>
+
+<body>
+    <h2>Ved's TODO Table</h2>
+    <input type="text" id="taskInput" placeholder="Enter your Task here....">
+    <button onclick="addTask()">Add</button>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="taskTableBody"></tbody>
+
+    </table>
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput")
+            let task = input.value;
+
+            let tr = document.createElement("tr");
+
+            let tdTask = document.createElement("td");
+            tdTask.innerText = task;
+
+            let tdAction = document.createElement("td");
+            let removeBtn = document.createElement("button");
+            removeBtn.innerText = " ❌ ";
+            removeBtn.onclick = function () {
+                tr.remove();
+            }
+            tdAction.appendChild(removeBtn);
+
+            tr.appendChild(tdTask);
+            tr.appendChild(tdAction);
+
+            let tbody = document.getElementById("taskTableBody")
+            tbody.appendChild(tr);
+
+            input.value = "";
+        }
+    </script>
+</body>
+
+</html>

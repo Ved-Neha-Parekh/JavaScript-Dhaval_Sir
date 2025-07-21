@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes Changer</title>
+</head>
+
+<body>
+    <h2>Quotes Rotator</h2>
+    <h3 id="quote">Starting quote....</h3>
+
+    <script>
+        let quotes = [
+            "Keep learning, keep growing!",
+            "Practice makes perfect.",
+            "Consistency is the key!",
+            "Ved bhai OP 💪",
+            "Every line of code counts!"
+        ]
+
+        let i = 0;
+
+        setInterval(function () {
+            document.getElementById("quote").innerText = quotes[i];
+            i++;
+            if (i >= quotes.length) {
+                i = 0;
+            }
+        }, 3000);
+    </script>
+</body>
+
+</html>
