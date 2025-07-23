@@ -29,8 +29,13 @@
             margin-bottom: 10px;
         }
 
-        .btn-remove {
+        .btn-remove,
+        .btn-edit {
             border-radius: 50px;
+        }
+
+        #taskInput:focus {
+            outline: none;
         }
     </style>
 </head>
@@ -44,7 +49,7 @@
                     <div class="input-group mb-4">
                         <input class="form-control" type="text" name="task" id="taskInput"
                             placeholder="Enter your task here..." />
-                        <button class="btn btn-primary overflow-hidden" onclick="addTask(); return false">
+                        <button class="btn btn-dark overflow-hidden" onclick="addTask(); return false">
                             ➕ Add
                         </button>
                     </div>
@@ -74,14 +79,49 @@
             list.innerText = task;
 
             let removeBtn = document.createElement("button");
-            removeBtn.className = "btn btn-sm btn-danger btn-remove";
+            let editBtn = document.createElement("button");
+            removeBtn.className = "btn btn-sm btn-danger btn-remove justify-con";
             removeBtn.innerText = "Remove";
             removeBtn.onclick = function () {
                 list.remove();
             };
 
-            list.appendChild(removeBtn);
+            editBtn.className = "btn btn-sm btn-primary btn-edit"
+            editBtn.innerText = "Edit";
+            // let currentText =;
+            editBtn.onclick = function () {
+                let currentElement = list.firstChild;
+                let currentText = currentElement.textContent;
+                console.log(currentText);
 
+                let editInput = document.createElement("input");
+                editInput.blur();
+                editInput.type = "text";
+                editInput.value = currentText;
+                editInput.className = "form-control form-control-sm border-0 me-2";
+
+                list.replaceChild(editInput, currentElement);
+
+                editBtn.innerText = "Save";
+                editBtn.className = "btn btn-sm btn-success btn-edit"
+                removeBtn.style.display = "none"
+
+                editBtn.onclick = function () {
+                    let newText = editInput.value;
+
+                    let newTextElement = document.createElement("span");
+                    newTextElement.textContent = newText;
+
+                    list.replaceChild(newTextElement, editInput);
+
+                    editBtn.innerText = "Edit";
+                    editBtn.className = "btn btn-sm btn-primary btn-edit"
+                }
+            }
+
+
+            list.appendChild(removeBtn);
+            list.appendChild(editBtn);
             document.getElementById("taskList").appendChild(list);
 
             input.value = "";
