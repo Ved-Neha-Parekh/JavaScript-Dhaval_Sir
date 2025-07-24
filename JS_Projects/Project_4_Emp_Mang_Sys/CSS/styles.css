@@ -46,7 +46,7 @@ body {
 
 .table {
     border-radius: 12px;
-    overflow: hidden;
+    /*! overflow: hidden; */
 }
 
 .table-hover tbody tr:hover {

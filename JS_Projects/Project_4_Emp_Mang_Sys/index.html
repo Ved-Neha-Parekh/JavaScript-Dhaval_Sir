@@ -86,10 +86,28 @@
                     </tbody>
                 </table>
             </div>
-
             <p class="text-center mt-4 text-muted" id="emptyMsg">No employees yet. Add some!</p>
         </div>
     </main>
+    <!-- Modal  -->
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-3 border-0">
+                <div class="modal-header text-white rounded-top-3 px-4 py-3" id="messageModalHeader">
+                    <h5 class="modal-title fw-bold fs-5" id="messageModalTitle">
+                        Message
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 fs-6" id="messageModalBody">
+
+                </div>
+                <div class="modal-footer bg-light border-top-0 rounded-bottom-3 justify-content-center py-3">
+                    <button type="button" class="btn btn-primary px-4 rounded-pill" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
