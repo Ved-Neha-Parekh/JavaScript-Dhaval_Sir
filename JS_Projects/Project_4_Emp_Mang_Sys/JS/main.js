@@ -49,7 +49,7 @@ empForm.addEventListener("submit", function (event) {
   const employeeRole = empRoleInput.value;
 
   if (employeeName === "" || employeeRole === "") {
-    alert("Please fill out this form....");
+    // alert("Please fill out this form....");
     return;
   }
 
