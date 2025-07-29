@@ -1,0 +1,30 @@
+<!-- Q3. Style Multiple List Items -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3</title>
+</head>
+
+<body>
+    <ul class="list">
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Portfolio</li>
+        <li>Feedback</li>
+    </ul>
+    <script>
+        let li = document.querySelectorAll("li");
+        li.forEach((item) => {
+            item.style.color = "green";
+            item.style.backgroundColor = "yellow";
+            item.style.listStyle = "none";
+            item.style.padding = "10px"
+        })
+    </script>
+</body>
+
+</html>

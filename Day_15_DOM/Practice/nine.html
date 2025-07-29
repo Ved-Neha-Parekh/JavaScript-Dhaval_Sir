@@ -1,0 +1,36 @@
+<!-- Q9. Multiple Events -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q9</title>
+    <style>
+        #main {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+
+        <button type="button">Click me</button>
+    </div>
+    <script>
+        let box = document.querySelector("#main");
+        let btn = document.querySelector("button");
+        btn.addEventListener("mouseover", () => {
+            let para = document.createElement("p");
+            para.textContent = "Hello mouseover hua!!!";
+            box.appendChild(para);
+        })
+        btn.addEventListener("click", () => {
+            box.style.backgroundColor = "red";
+        })
+    </script>
+</body>
+
+</html>

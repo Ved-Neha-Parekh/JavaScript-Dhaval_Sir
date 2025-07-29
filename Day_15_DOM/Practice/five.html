@@ -1,0 +1,27 @@
+<!-- Q5. Remove an Element -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q5</title>
+</head>
+
+<body>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate officia minus veritatis reprehenderit ut,
+            deleniti eaque dolorum quo eligendi distinctio.</p>
+
+        <button>Delete</button>
+    </div>
+    <script>
+        let para = document.querySelector("p");
+        let btn = document.querySelector("button");
+        btn.addEventListener("click", () => {
+            para.remove();
+        })
+    </script>
+</body>
+
+</html>

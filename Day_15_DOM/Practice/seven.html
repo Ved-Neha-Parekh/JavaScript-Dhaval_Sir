@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q7</title>
+</head>
+
+<body>
+    <div>
+        <button>Click Me</button>
+        <p></p>
+    </div>
+    <script>
+        let btn = document.querySelector("button");
+        let p = document.querySelector("p");
+        let count = 0;
+
+        btn.addEventListener("click", () => {
+            count++;
+            console.log(count);
+            p.textContent = `You Clicked ${count} clicks`;
+        })
+    </script>
+</body>
+
+</html>
