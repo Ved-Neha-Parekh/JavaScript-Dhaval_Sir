@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Add item here....">
+    <button>Add Item</button>
+    <ul id="list">
+
+    </ul>
+    <script>
+        let inp = document.querySelector("input");
+        let lists = document.getElementById("list");
+        let btn = document.querySelector("button");
+
+        btn.addEventListener("click", () => {
+            let list = document.createElement("li");
+            let delBtn = document.createElement("button");
+            delBtn.textContent = "delMe";
+            delBtn.addEventListener("click", () => {
+                list.remove();
+                delBtn.style.display = "none";
+            })
+            list.textContent = inp.value;
+            lists.appendChild(list);
+            lists.appendChild(delBtn);
+
+            inp.value = "";
+        })
+    </script>
+</body>
+
+</html>
