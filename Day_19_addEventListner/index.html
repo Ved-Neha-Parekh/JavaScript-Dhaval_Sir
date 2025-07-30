@@ -1,0 +1,44 @@
+<!-- Dark Mode Toggle -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #box {
+            width: 100vw;
+            height: 100vh;
+            /* background-color: aqua; */
+            padding: 10px;
+        }
+
+        .red {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+        <button type="button">Dark/Light Mode</button>
+    </div>
+    <script>
+        let box = document.querySelector("#box");
+        let btn = document.querySelector("button");
+        btn = btn.addEventListener("click", function () {
+            box.classList.toggle("red");
+        })
+    </script>
+</body>
+
+</html>
