@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a href="#" class="navbar-brand fw-bold">E-commerce Web</a>
+            <div class="d-flex">
+                <a href="#cartOffcanvas" class="nav-link cart-icon" data-bs-toggle="offcanvas">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartItemCount" class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <h2 class="text-center">Our Products </h2>
+        <div class="row mb-4">
+            <div class="col-lg-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search products....">
+            </div>
+            <div class="col-lg-5 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        Price Range
+                    </span>
+                    <input type="number" id="minPriceInput" class="form-control" placeholder="Min Price">
+                    <input type="number" id="maxPriceInput" class="form-control" placeholder="Max Price">
+                    <button class="btn btn-primary" id="applyFilterBtn">Apply Filter</button>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <select id="sortSelect" class="form-select">
+                    <option value="default">Sort by... </option>
+                    <option value="price-asc">Price: Low to High </option>
+                    <option value="price-desc">Price: High to Low </option>
+                    <option value="name-asc">Name: A-Z</option>
+                </select>
+            </div>
+        </div>
+        <div id="productList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        </div>
+    </main>
+
+    <div id="cartOffcanvas" class="offcanvas offcanvas-end cart-offcanvas" tabindex="-1"
+        aria-labelledby="cart-offcanvas-title">
+        <div class="offcanvas-header">
+            <h5 id="cartOffcanvasTitle" class="offcanvas-title">
+                Your Shopping Cart
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div id="cartItems" class="flex-grow-1 overflow-auto">
+                <p id="emptyCartMsg" class="text-muted text-center mt-4">Your cart is empty</p>
+            </div>
+            <div class="mt-auto pt-3 border-top">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <h5 class="mb-0">Total: </h5>
+                    <h5 id="cartTotal" class="mb-0">0.00 </h5>
+                </div>
+                <button class="btn btn-success w-100 py-2">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js">
+    </script>
+</body>
+
+</html>
