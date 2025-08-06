@@ -24,4 +24,13 @@ function showPrevSlide() {
 nextButton.addEventListener("click", showNextSlide);
 prevButton.addEventListener("click", showPrevSlide);
 
+let autoSlideInterval = setInterval(showNextSlide, 4000);
+
+slider.addEventListener("mouseenter", function () {
+  clearInterval(autoSlideInterval);
+});
+
+slider.addEventListener("mouseleave", function () {
+  autoSlideInterval = setInterval(showNextSlide, 4000);
+});
 updateSliderPosition();
