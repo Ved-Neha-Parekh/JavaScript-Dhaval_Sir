@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Naruto Quote App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #f7b32b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .naruto-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+            padding: 36px 28px 28px 28px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 3px solid #222;
+            position: relative;
+        }
+
+        .naruto-headband {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 38px;
+            background: #222;
+            border-radius: 18px 18px 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .naruto-headband span {
+            font-size: 1rem;
+            color: #f7b32b;
+            letter-spacing: 2px;
+        }
+
+        .quote-icon {
+            font-size: 2.2rem;
+            color: #f7b32b;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #222;
+            font-family: 'Bangers', cursive;
+            margin-bottom: 10px;
+            min-height: 50px;
+            transition: opacity 0.4s;
+            letter-spacing: 1px;
+        }
+
+        .quote-author {
+            margin-top: 8px;
+            font-size: 1rem;
+            color: #222;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn-quote {
+            background: #f7b32b;
+            color: #222;
+            border: 2px solid #222;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 8px 28px;
+            margin: 18px 0 0 0;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            transition: background 0.2s, color 0.2s, border 0.2s;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .btn-quote:hover,
+        .btn-quote:focus {
+            background: #222;
+            color: #f7b32b;
+            border: 2px solid #f7b32b;
+        }
+
+        @media (max-width: 500px) {
+            .naruto-card {
+                padding: 20px 8px 16px 8px;
+            }
+
+            .quote-text {
+                font-size: 1rem;
+            }
+
+            .naruto-headband {
+                width: 60px;
+                height: 28px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="naruto-card">
+        <div class="naruto-headband">
+            <span>木ノ葉</span>
+        </div>
+        <div class="quote-icon">🌀</div>
+        <div id="quote" class="quote-text"></div>
+        <div id="author" class="quote-author"></div>
+        <button class="btn btn-quote" onclick="getQuote()">New Quote</button>
+    </div>
+    <script>
+        const quotes = [
+            { text: "I'm not gonna run away, I never go back on my word! That's my nindo: my ninja way!", author: "Naruto Uzumaki" },
+            { text: "When you give up, your dreams and everything else, they're gone.", author: "Naruto Uzumaki" },
+            { text: "A smile is the easiest way out of a difficult situation.", author: "Sakura Haruno" },
+            { text: "In society, those who don't have many abilities tend to complain more.", author: "Kakashi Hatake" },
+            { text: "The moment people come to know love, they run the risk of carrying hate.", author: "Obito Uchiha" },
+            { text: "It’s not the face that makes someone a monster; it’s the choices they make with their lives.", author: "Naruto Uzumaki" },
+            { text: "The pain of being alone is completely out of this world, isn’t it?", author: "Naruto Uzumaki" },
+            { text: "If you don’t like your destiny, don’t accept it. Instead, have the courage to change it the way you want it to be.", author: "Naruto Uzumaki" },
+            { text: "Hard work is worthless for those that don’t believe in themselves.", author: "Naruto Uzumaki" },
+            { text: "A place where someone still thinks about you is a place you can call home.", author: "Jiraiya" }
+        ];
+        let lastIndex = -1;
+        function getQuote() {
+            const quoteDiv = document.getElementById('quote');
+            const authorDiv = document.getElementById('author');
+            let random;
+            do {
+                random = Math.floor(Math.random() * quotes.length);
+            } while (random === lastIndex && quotes.length > 1);
+            lastIndex = random;
+            quoteDiv.style.opacity = 0;
+            setTimeout(() => {
+                quoteDiv.innerText = `"${quotes[random].text}"`;
+                authorDiv.innerText = `- ${quotes[random].author}`;
+                quoteDiv.style.opacity = 1;
+            }, 200);
+        }
+        window.onload = getQuote;
+    </script>
+</body>
+
+</html>
