@@ -11,3 +11,7 @@ A simple, attractive Naruto-themed quote generator. Shows a random quote on load
 - Fade-in quote animation
 - Naruto-style UI (headband, colors, font)
 - Responsive card layout
+
+## Preview
+
+(./image.png)

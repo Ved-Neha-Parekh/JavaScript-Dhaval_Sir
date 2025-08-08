@@ -1,13 +1,18 @@
-# Download Progress Bar (Start • Stop • Reset)
+# Simple Stopwatch (Dark Theme)
 
-A clean, modern download progress simulation with an eye-catching glass UI. Start, stop (pause), and reset the progress with proper button states and smooth transitions.
+A minimal, attractive stopwatch with a dark UI. Built with vanilla JavaScript and Bootstrap. Provides Start, Stop, and Reset controls with a clear HH:MM:SS display.
 
 - Tech: HTML, CSS (Bootstrap 5), JavaScript
-- Live Demo: ([Click to see](https://eclectic-croquembouche-b05e50.netlify.app/))
+- Font: Google Fonts – Roboto Mono
+- Live Demo: ([Click to see](https://dazzling-conkies-f75876.netlify.app/))
 
 ## Features
 
-- Start/Stop (pause) and Reset controls
-- Smooth progress animation (increments at random speed)
-- Disabled button states to prevent multiple intervals
-- Visual completion state with success styling
+- Start, Stop, and Reset controls
+- HH:MM:SS format with zero-padding
+- Prevents multiple timers via a `running` flag
+- Dark, modern card UI and responsive layout
+
+## Preview
+
+(./image.png)
