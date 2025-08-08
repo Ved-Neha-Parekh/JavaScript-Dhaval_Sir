@@ -15,4 +15,4 @@ A minimal, attractive stopwatch with a dark UI. Built with vanilla JavaScript an
 
 ## Preview
 
-(./image.png)
+![Preview of Simple Stopwatch](./image.png)

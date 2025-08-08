@@ -14,4 +14,4 @@ A simple, attractive Naruto-themed quote generator. Shows a random quote on load
 
 ## Preview
 
-(./image.png)
+![Preview of Naruto Quote App](./image.png)

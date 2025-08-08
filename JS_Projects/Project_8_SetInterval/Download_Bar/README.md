@@ -14,4 +14,4 @@ A clean, modern download progress simulation with an eye-catching glass UI. Star
 
 ## Preview
 
-(./image.png)
+![Preview of Download Bar](./image.png)
