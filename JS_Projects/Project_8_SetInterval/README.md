@@ -3,7 +3,6 @@
 A curated set of small, polished front‑end projects built with HTML, CSS (Bootstrap), and vanilla JavaScript. Each project focuses on clean UI, smooth UX, and simple, readable code.
 
 - Tech: HTML, CSS (Bootstrap 5), JavaScript
-- Status: Ready to use
 
 ## Projects
 
@@ -52,7 +51,6 @@ A minimal, eye‑friendly dark stopwatch. Start, Stop, and Reset with a clear HH
 - Features:
   - Start, Stop, Reset controls
   - HH:MM:SS with zero‑padding
-  - Prevents multiple timers via a `running` flag
   - Dark, modern, responsive UI
 
 ---
