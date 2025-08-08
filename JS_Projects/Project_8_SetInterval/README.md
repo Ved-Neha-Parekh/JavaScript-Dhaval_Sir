@@ -62,7 +62,9 @@ A minimal, eye‑friendly dark stopwatch. Start, Stop, and Reset with a clear HH
 A minimal, eye‑protective quiz with a glass card, per‑question countdown, and clear feedback (correct/wrong). Timer bar shifts color as time runs out.
 
 - Live Demo: <[Play Quiz Now!!!](https://deft-strudel-beb96e.netlify.app/)>
+
 ![Project Preview](./Quiz_Web/output/quiz.png)
+
 - Features:
   - Flow: Start → Question → Answer/Timeout → Next
   - 12s per question countdown (progress bar)
