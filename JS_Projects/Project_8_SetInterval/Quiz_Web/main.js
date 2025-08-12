@@ -104,7 +104,7 @@ function showQuestion() {
     const q = questions[currentQuestion];
     quizContainer.innerHTML = `
         <h4 class="mb-4">${q.question}</h4>
-        <div id="options">Hello</div>
+        <div id="options"></div>
     `;
     q.options.forEach(function (opt, idx) {
       const btn = document.createElement("button");
@@ -163,15 +163,11 @@ function resetQuiz() {
 function startTimer() {
   timeLeft = 12;
   progressBar.style.width = "100%";
-  progressBar.classList.remove("bg-danger");
-  progressBar.classList.add("bg-warning");
   progressTimer = setInterval(() => {
     timeLeft--;
     let percent = (timeLeft / 12) * 100;
     progressBar.style.width = percent + "%";
     if (timeLeft <= 3) {
-      progressBar.classList.remove("bg-warning");
-      progressBar.classList.add("bg-danger");
     }
     if (timeLeft <= 0) {
       clearInterval(progressTimer);
