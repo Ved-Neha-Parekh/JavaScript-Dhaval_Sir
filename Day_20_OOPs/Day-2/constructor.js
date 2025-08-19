@@ -65,13 +65,9 @@ class Mobile_Phone {
 
   discountedPrice(percent) {
     let discountedPrice = (percent / 100) * this.price;
-    console.log(
-      `Your Final Price is ${this.price} - ${discountedPrice} = ${
-        this.price - discountedPrice
-      }`
-    );
+    return this.price - discountedPrice;
   }
 }
 
 // let phn1 = new Mobile_Phone("Vivo", "Y18", 12000);
-// phn1.discountedPrice(5);
+// console.log("Final Price:", phn1.discountedPrice(5));
