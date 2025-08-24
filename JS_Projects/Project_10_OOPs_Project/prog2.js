@@ -1,10 +1,10 @@
 function greet(name, age) {
   if (age === undefined) {
-    console.log(`Hello ${name}`);
+    console.log(`👋 Hello, ${name}!`);
   } else {
-    console.log(`Hello ${name}, you are ${age} years old`);
+    console.log(`🎂 Hello, ${name}! You're ${age} years old.`);
   }
 }
 
-greet("Julu bhai");
-greet("Julu bhai", 18);
+greet("Mr A");
+greet("Mr B", 25);

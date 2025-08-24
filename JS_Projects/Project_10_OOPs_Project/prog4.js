@@ -1,20 +1,21 @@
 class Payment {
   pay(amount) {
-    console.log(`Paying ${amount}`);
+    console.log(`Processing a payment of $${amount}.`);
   }
 }
 
 class CreditCard extends Payment {
   pay(amount) {
-    console.log(`Paid ${amount} using Credit Card 💳`);
+    console.log(`💳 Successfully paid $${amount} using a Credit Card.`);
   }
 }
 
 class PayPal extends Payment {
   pay(amount) {
-    console.log(`Paid ${amount} using PayPal 🅿`);
+    console.log(`🅿️ Payment of $${amount} made via PayPal.`);
   }
 }
 
-let payments = [new CreditCard(), new PayPal()];
-payments.forEach((p) => p.pay(500));
+let paymentMethods = [new CreditCard(), new PayPal()];
+
+paymentMethods.forEach((method) => method.pay(750));
