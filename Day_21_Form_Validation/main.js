@@ -1,3 +1,4 @@
+// Start 
 const form = document.getElementById("signupForm");
 
 const username = document.getElementById("username");
@@ -51,3 +52,5 @@ form.addEventListener("submit", function (e) {
     form.reset();
   }
 });
+
+// End 
