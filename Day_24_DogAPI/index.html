@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOG API</title>
+</head>
+
+<body>
+    <button id="btn" style="margin: 20px 0">Fetch</button><br />
+    <img src="" alt="dogImg" id="dogImg" style="width: 400px; height: 400px; object-fit: cover" />
+    <p id="loader">Loading<span id="loaderSpan"></span></p>
+
+    <script>
+        let dogImg = document.getElementById("dogImg");
+        let btn = document.getElementById("btn");
+        let loader = document.getElementById("loader");
+        let loaderSpan = document.getElementById("loaderSpan");
+        let interval;
+
+        function startLoader() {
+            let dots = 0;
+            loader.style.display = "block";
+            interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                loaderSpan.textContent = ".".repeat(dots);
+            }, 500);
+        }
+
+        loader.style.display = "none";
+
+        function stopLoader() {
+            clearInterval(interval);
+            loader.style.display = "none";
+            loaderSpan.textContent = "";
+        }
+
+        btn.addEventListener("click", () => {
+            startLoader();
+            fetch("https://ben10-api.herokuapp.com/random")
+                .then((res) => res.json())
+                .then((data) => {
+                    dogImg.src = data.message;
+                });
+        });
+
+        dogImg.addEventListener("load", stopLoader);
+    </script>
+</body>
+
+</html>
