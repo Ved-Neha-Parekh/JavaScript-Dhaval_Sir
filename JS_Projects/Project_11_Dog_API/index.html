@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dog API Viewer</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons (for button icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: radial-gradient(1200px 600px at 10% 10%, #e9f3ff 0%, transparent 40%),
+                radial-gradient(900px 600px at 90% 20%, #f3f0ff 0%, transparent 40%),
+                linear-gradient(180deg, #fdfdfd 0%, #f6f8fb 100%);
+        }
+
+        .dog-card {
+            backdrop-filter: blur(6px);
+        }
+
+        .dog-frame {
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .dog-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            /* show only after load */
+        }
+
+        .overlay-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(2px);
+        }
+
+        .toast-container {
+            z-index: 1080;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="#">
+                🐶 Doggo Fetcher
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <button id="themeToggle" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-brightness-high"></i> Theme
+                </button>
+                <a class="btn btn-outline-dark btn-sm" href="https://dog.ceo/dog-api/" target="_blank" rel="noopener">
+                    <i class="bi bi-box-arrow-up-right"></i> API
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="card shadow-lg dog-card border-0">
+                    <div class="card-header bg-transparent">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-12 col-md-8">
+                                <label for="breedSelect" class="form-label mb-1">Breed</label>
+                                <select id="breedSelect" class="form-select">
+                                    <option value="">All breeds (Random)</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label mb-1 opacity-0 d-block">.</label>
+                                <button id="btnFetch" class="btn btn-primary w-100">
+                                    <i class="bi bi-shuffle"></i> Fetch Dog
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="ratio ratio-1x1 bg-body-tertiary position-relative dog-frame">
+                            <img id="dogImg" class="dog-img" alt="Random Dog" />
+                            <div id="spinnerOverlay" class="overlay-center">
+                                <div class="text-center">
+                                    <div class="spinner-border text-primary" role="status"></div>
+                                    <div class="mt-2 text-secondary fw-medium">Fetching doggo...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex flex-wrap gap-2">
+                        <button id="btnOpen" class="btn btn-outline-secondary" disabled>
+                            <i class="bi bi-box-arrow-up-right"></i> Open
+                        </button>
+                        <button id="btnCopy" class="btn btn-outline-secondary" disabled>
+                            <i class="bi bi-link-45deg"></i> Copy URL
+                        </button>
+                        <button id="btnDownload" class="btn btn-success ms-auto" disabled>
+                            <i class="bi bi-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-center text-secondary mt-3 mb-0">
+                    Tip: Press the Fetch button to get a new dog. Select a breed for breed-specific images.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toasts -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMsg">Something went wrong.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ====== CONFIG ======
+        // Default: Dog CEO API
+        const DOG_API_BASE = "https://dog.ceo/api";
+
+        // If you want to use your endpoint (same response shape { message: <imgUrl> }),
+        // just set CUSTOM_RANDOM_ENDPOINT, and toggle USE_CUSTOM_ENDPOINT = true
+        const USE_CUSTOM_ENDPOINT = false; // set to true to use your API
+        const CUSTOM_RANDOM_ENDPOINT = "https://ben10-api.herokuapp.com/random";
+
+        // ====== ELEMENTS ======
+        const breedSelect = document.getElementById("breedSelect");
+        const btnFetch = document.getElementById("btnFetch");
+        const btnOpen = document.getElementById("btnOpen");
+        const btnCopy = document.getElementById("btnCopy");
+        const btnDownload = document.getElementById("btnDownload");
+        const dogImg = document.getElementById("dogImg");
+        const spinnerOverlay = document.getElementById("spinnerOverlay");
+        const errorToastEl = document.getElementById("errorToast");
+        const toastMsg = document.getElementById("toastMsg");
+        const themeToggle = document.getElementById("themeToggle");
+
+        let currentImgUrl = "";
+
+        // ====== HELPERS ======
+        const showToast = (msg) => {
+            toastMsg.textContent = msg;
+            const toast = new bootstrap.Toast(errorToastEl, { delay: 3000 });
+            toast.show();
+        };
+
+        const setLoading = (isLoading) => {
+            spinnerOverlay.style.display = isLoading ? "grid" : "none";
+            btnFetch.disabled = isLoading;
+            breedSelect.disabled = isLoading;
+            if (isLoading) {
+                dogImg.style.display = "none";
+            }
+        };
+
+        const buildUrl = (breed) => {
+            if (USE_CUSTOM_ENDPOINT) {
+                // Using your custom endpoint
+                return CUSTOM_RANDOM_ENDPOINT;
+            }
+            if (!breed) return `${DOG_API_BASE}/breeds/image/random`;
+            return `${DOG_API_BASE}/breed/${breed}/images/random`;
+        };
+
+        const updateActions = (enabled) => {
+            btnOpen.disabled = !enabled;
+            btnCopy.disabled = !enabled;
+            btnDownload.disabled = !enabled;
+        };
+
+        const downloadImage = async (url) => {
+            try {
+                const res = await fetch(url, { mode: "cors" });
+                if (!res.ok) throw new Error("Network error");
+                const blob = await res.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = blobUrl;
+                a.download = "doggo.jpg";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(blobUrl);
+            } catch (e) {
+                // Fallback: open in new tab
+                window.open(url, "_blank", "noopener");
+            }
+        };
+
+        // ====== API CALLS ======
+        const fetchBreeds = async () => {
+            try {
+                const res = await fetch(`${DOG_API_BASE}/breeds/list/all`);
+                const data = await res.json();
+                if (data.status !== "success") throw new Error("Failed to load breeds.");
+                const breeds = Object.keys(data.message);
+                const frag = document.createDocumentFragment();
+
+                // Top option already exists; we add the rest
+                breeds.forEach((breed) => {
+                    const opt = document.createElement("option");
+                    opt.value = breed;
+                    opt.textContent = breed.charAt(0).toUpperCase() + breed.slice(1);
+                    frag.appendChild(opt);
+                });
+                breedSelect.appendChild(frag);
+            } catch (err) {
+                // Not critical; user can still fetch random dogs
+                console.warn("Breed list error:", err);
+            }
+        };
+
+        const fetchDog = async () => {
+            try {
+                setLoading(true);
+                updateActions(false);
+
+                const breed = breedSelect.value;
+                const url = buildUrl(breed);
+
+                const res = await fetch(url);
+                const data = await res.json();
+
+                // Dog CEO and many simple endpoints return { message: <url> }
+                if (!data || !data.message) throw new Error("Invalid API response.");
+
+                currentImgUrl = data.message;
+                // Image onload will hide spinner
+                dogImg.src = currentImgUrl;
+            } catch (err) {
+                setLoading(false);
+                showToast(err.message || "Failed to fetch image.");
+            }
+        };
+
+        // ====== EVENTS ======
+        dogImg.addEventListener("load", () => {
+            setLoading(false);
+            dogImg.style.display = "block";
+            updateActions(true);
+        });
+
+        dogImg.addEventListener("error", () => {
+            setLoading(false);
+            updateActions(false);
+            showToast("Image failed to load. Try again.");
+        });
+
+        btnFetch.addEventListener("click", fetchDog);
+
+        btnOpen.addEventListener("click", () => {
+            if (currentImgUrl) window.open(currentImgUrl, "_blank", "noopener");
+        });
+
+        btnCopy.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(currentImgUrl);
+                showToast("Image URL copied! ✅");
+            } catch {
+                showToast("Copy failed. You can copy manually.");
+            }
+        });
+
+        btnDownload.addEventListener("click", () => {
+            if (currentImgUrl) downloadImage(currentImgUrl);
+        });
+
+        // Optional: fetch whenever breed changes
+        breedSelect.addEventListener("change", fetchDog);
+
+        // Theme toggle (light/dark)
+        themeToggle.addEventListener("click", () => {
+            const html = document.documentElement;
+            const current = html.getAttribute("data-bs-theme") || "light";
+            const next = current === "light" ? "dark" : "light";
+            html.setAttribute("data-bs-theme", next);
+        });
+
+        // Init
+        (async function init() {
+            setLoading(true);
+            updateActions(false);
+            await fetchBreeds();
+            await fetchDog();
+        })();
+    </script>
+</body>
+
+</html>
