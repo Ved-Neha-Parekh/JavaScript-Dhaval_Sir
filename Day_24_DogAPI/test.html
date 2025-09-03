@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+
+<body>
+    <select id="breedDropdown">
+        <option>Select your breed</option>
+    </select>
+    <br>
+    <img src="" alt="dogImg" id="dogImg" style="max-width:300px; display:none;">
+    <script>
+        let breedDropdown = document.getElementById("breedDropdown");
+        let dogImg = document.getElementById("dogImg");
+
+        fetch("https://dog.ceo/api/breeds/list/all")
+            .then(res => res.json())
+            .then(data => {
+                const breeds = Object.keys(data.message);
+                breeds.forEach(breed => {
+                    let option = document.createElement("option");
+                    option.value = breed;
+                    option.textContent = breed
+                    breedDropdown.appendChild(option)
+                })
+            }).catch(err => console.log(err.message))
+
+        breedDropdown.addEventListener("change", function () {
+            let breed = this.value;
+            if (breed) {
+                fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
+                    .then(res => res.json())
+                    .then(data => {
+                        dogImg.src = data.message;
+                        dogImg.style.display = "block"
+                    })
+            } else {
+                dogImg.style.display = "none";
+            }
+        })
+    </script>
+</body>
+
+</html>
