@@ -1,11 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #FFF9F2;
+    --card: #ffffff;
+    --accent: #FF7A59;
+    /* warm dog-friendly accent */
+    --muted: #6b6b6b;
+    --radius: 14px;
+}
+
 body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Poppins';
+    background: linear-gradient(180deg, #fffefa 0%, #f6f1ea 100%);
+    color: #222;
+}
+
+.navbar {
+    background: transparent;
+    padding: 1rem 0;
+}
+
+.brand {
+    font-weight: 700;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(90deg, rgba(255, 122, 89, 0.06), rgba(255, 180, 110, 0.04));
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(29, 29, 29, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero .title {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.hero .subtitle {
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.chip {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    padding: 6px 12px;
+    box-shadow: 0 6px 18px rgba(30, 30, 30, 0.04);
+    cursor: pointer;
+    
 }
