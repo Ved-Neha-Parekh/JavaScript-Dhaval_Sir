@@ -18,6 +18,7 @@
 
         .movie-card {
             transition: transform 0.2s;
+            cursor: pointer;
         }
 
         .movie-card:hover {
@@ -33,8 +34,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark px-4">
+    <nav class="navbar navbar-dark bg-dark px-4 justify-content-start">
         <a href="#" class="navbar-brand">🎬 MovieApp</a>
+        <select id="genreSelect" class="form-select me-3 border-0" style="width: 180px;">
+            <option value="">All Genres</option>
+        </select>
         <form class="d-flex" id="searchForm">
             <input type="search" class="form-control border-0 me-2" id="searchInput" />
             <button class="btn btn-danger" type="submit">Search</button>
@@ -71,15 +75,34 @@
         const movieList = document.getElementById("movieList");
         const searchForm = document.getElementById("searchForm");
         const searchInput = document.getElementById("searchInput");
+        const genreSelect = document.getElementById("genreSelect");
 
-        async function getPopularMovies() {
-            const response = await fetch(
-                `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-            );
+        async function getGenre() {
+            const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+            const data = await response.json();
+            data.genres.forEach(genre => {
+                const option = document.createElement("option");
+                option.value = genre.id;
+                option.textContent = genre.name;
+                genreSelect.appendChild(option);
+            })
+        }
 
+
+        async function getPopularMovies(genreId = "") {
+            let url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+            if (genreId) {
+                url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genreId}`;
+            }
+            const response = await fetch(url);
             const data = await response.json();
             showMovies(data.results);
         }
+
+        genreSelect.addEventListener("change", () => {
+            const genreId = genreSelect.value;
+            getPopularMovies(genreId);
+        });
 
         function showMovies(movies) {
             movieList.innerHTML = "";
@@ -87,7 +110,7 @@
                 const col = document.createElement("div");
                 col.classList.add("col-md-3", "mb-4");
                 col.innerHTML = `
-                <div class="card bg-dark text-white movie-card">
+                <div class="card bg-dark text-white movie-card ">
                         <img src="${movie.poster_path
                         ? IMG_URL + movie.poster_path
                         : "./images.jpeg"
@@ -119,7 +142,8 @@
                 getPopularMovies();
             }
         }))
-        getPopularMovies(); 
+        getPopularMovies();
+        getGenre();
     </script>
 </body>
 
