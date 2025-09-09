@@ -9,7 +9,7 @@ async function getWeather(city) {
         return;
     }
 
-    const url = ;
+    // const url = ;
 
     try {
         const response = await fetch(url);
