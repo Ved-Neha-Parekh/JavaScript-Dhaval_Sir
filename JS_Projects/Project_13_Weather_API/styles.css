@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --glass: rgba(255, 255, 255, 0.12);
+    -stroke: rgba(255, 255, 255, 0.25);
+    --text: #f5f7fb;
+    --accent: #7cf5ff;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+    background: linear-gradient(-45deg, #090c1a, #0f1733, #1a2a6c, #2a0845);
+    background-size: 400% 400%;
+    min-height: 100vh;
+    animation: bgShift 16s ease infinite;
+    -webkit-animation: bgShift 16s ease infinite;
+}
+
+.brand {
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 6px 30px rgba(124, 245, 255, 0.3);
+}
+
+.glow {
+    color: var(--accent);
+    text-shadow: 0 0 18px rgba(124, 245, 255, 0.6);
+}
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(-stroke);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.search-card {
+    padding: 16px 18px;
+}
+
+.search-card .form-control {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text);
+}
+
+
+.search-card .form-control::placeholder {
+    color: #c6cde0;
+}
+
+.btn-neon {
+    background: linear-gradient(135deg, #00e5ff, #008cff);
+    border: none;
+    color: #001220;
+    font-weight: 600;
+    box-shadow: 0 10px 28px rgba(0, 196, 255, 0.35);
+}
+
+.btn-neon:hover {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--text);
+}
+
+.metric-toggle .form-check-input {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: none;
+}
+
+.metric-toggle .form-check-input:checked {
+    background-color: #00b7ff;
+}
+
+.shimmer {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes bgShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

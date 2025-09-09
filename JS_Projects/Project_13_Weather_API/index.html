@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SkyDash Weather</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body class="">
+    <div class="container py-5 py-md-5">
+      <div
+        class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 mb-md-4"
+      >
+        <h1 class="brand m-0">Sky<span class="glow">Dash</span> Weather</h1>
+        <div class="mini mt-2 mt-md-0">SkyDash: Forecasts in a flash.</div>
+      </div>
+
+      <div class="glass-card search-card mb-4">
+        <form id="searchForm" class="row g-2 align-items-center">
+          <div class="col-12 col-md-6">
+            <div class="input-group">
+              <span
+                class="input-group-text bg-transparent text-light border-secondary"
+                ><i class="bi bi-search"></i
+              ></span>
+              <input
+                id="cityInput"
+                type="text"
+                class="form-control"
+                placeholder="Enter city name e.g., Delhi, Mumbai, London"
+              />
+            </div>
+          </div>
+          <div class="col-6 col-md-3 d-grid d-md-block">
+            <button id="searchBtn" type="submit" class="btn btn-neon w-100">
+              <i class="bi bi-lightning-charge-fill me-1"></i>Search
+            </button>
+          </div>
+          <div class="col-6 col-md-2 d-grid d-md-block">
+            <button id="geoBtn" type="button" class="btn btn-ghost w-100">
+              <i class="bi bi-geo-alt-fill me-1"></i>Use Location
+            </button>
+          </div>
+          <div class="col-12 col-md-1 text-start text-md-end metric-toggle">
+            <div class="form-check form-switch m-0">
+              <input class="form-check-input" type="checkbox" id="unitToggle" />
+              <label class="form-check-label mini" for="unitToggle"
+                ><span id="unitLabel">°C</span>/<span>°F</span></label
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Current Weather Card -->
+      <div id="currentCard" class="glass-card p-3 p-md-4 mb-4 border">
+        <div class="shimmer rounded-4" style="height: 160px"></div>
+      </div>
+
+      <!-- Forecast -->
+      <div class="glass-card p-3 p-md-4">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <h5 class="m-0">5-Day Forecast</h5>
+          <i class="bi bi-calendar-week mini"></i>
+        </div>
+        <div id="forecastRow" class="forecast-wrap">
+          <div class="forecast-card shimmer"></div>
+          <div class="forecast-card shimmer"></div>
+          <div class="forecast-card shimmer"></div>
+          <div class="forecast-card shimmer"></div>
+          <div class="forecast-card shimmer"></div>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <div class="text-center mini mt-4">
+        Tip: Try geolocation or toggle °C/°F for different units.
+      </div>
+    </div>
+
+    <!-- Toast (Errors/Info) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="appToast"
+        class="toast text-bg-dark border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="toastMsg">Hello</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
