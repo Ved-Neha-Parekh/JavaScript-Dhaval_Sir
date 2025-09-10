@@ -1,7 +1,7 @@
 const API_KEY = "d6a744c201e3c509b71b11a74fb9a62b";
 const UNIT = "metric";
 
-const $ = (s) => document.querySelector(s);
+const eleSelector = (ele) => document.querySelector(ele);
 
 async function getWeather(city) {
     if (!API_KEY || API_KEY.includes("d6a744c201e3c509b71b11a74fb9a62b")) {

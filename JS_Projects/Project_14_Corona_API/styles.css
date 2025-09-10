@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+.hero {
+    background: linear-gradient(135deg,
+            #1d4ed8,
+            #9333ea);
+}
+
+.card.kpi {
+    border: 0;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card.kpi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, .2);
+}
+
+.badge {
+    border-radius: 999px;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#suggestions {
+    max-height: 260px;
+    overflow: auto;
+    margin-top: 2px;
+}
